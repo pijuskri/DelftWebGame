@@ -1,0 +1,33 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+td {
+  border: 1px solid #dddddd;
+  background-color:white;
+  padding: 0px;
+  margin: -2px;
+  text-align: center;
+  width: 60px;
+  height: 60px;
+}
+.click{
+  animation-name: example;
+  animation-duration: 2s;
+}
+table
+{
+  
+  padding: 10px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+a {
+  color: #00B7FF;
+}
+@keyframes example {
+  0%   {background-color: white;}
+  25%  {background-color: red;}
+  50%  {background-color: red;}
+  100% {background-color: white;}
+}
