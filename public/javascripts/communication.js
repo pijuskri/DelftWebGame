@@ -7,6 +7,7 @@ socket.onmessage = function(event){
   {
     game.board = incomingMsg.data;
     $("td").loadBoard(); 
+    game.kingCheck();
     //console.log("loaded"+game.board );
   }
   if(incomingMsg.type == Messages.PlayerAss_s)
@@ -18,7 +19,7 @@ socket.onmessage = function(event){
   if(incomingMsg.type == Messages.GameStart_s)
   {
     game.gameStarted=true;
-    alert("game has started");
+    //alert("game has started");
   }
   if(incomingMsg.type == Messages.Turn_s)
   {
