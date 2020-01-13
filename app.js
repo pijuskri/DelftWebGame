@@ -68,8 +68,15 @@ wss.on("connection", function connection(ws) {
         if(gameObj.player2) gameObj.player2.send(JSON.stringify(outgoingMsg));
         if(player==1 && gameObj.player2) gameObj.player2.send(messages.Turn_j);
         else gameObj.player1.send(messages.Turn_j);
-        wss.clients.forEach(function each(client) {
-        });
+       
+      }
+      if(incomingMsg.type == messages.GameEnd_s)
+      {
+        console.log("Player "+incomingMsg.data+" has won!");
+        var outgoingMsg = messages.GameEnd_o;
+        outgoingMsg.data = incomingMsg.data;
+        gameObj.player1.send(JSON.stringify(outgoingMsg));
+        gameObj.player2.send(JSON.stringify(outgoingMsg));
       }
   });
 });

@@ -7,7 +7,7 @@ socket.onmessage = function(event){
   {
     game.board = incomingMsg.data;
     $("td").loadBoard(); 
-    game.kingCheck();
+    if(game.gameStarted && game.board)game.kingCheck();
     //console.log("loaded"+game.board );
   }
   if(incomingMsg.type == Messages.PlayerAss_s)
@@ -26,6 +26,13 @@ socket.onmessage = function(event){
     game.yourTurn=true;
     //alert("game has started");
   }
+  if(incomingMsg.type == Messages.GameEnd_s)
+  {
+      console.log("Player "+incomingMsg.data+" has won!");
+      game.gameEnd = true;
+      if(incomingMsg.data==game.player) alert("You won!");
+      else alert("You lost..");
+  }
   
 }
 socket.onopen = function(){
@@ -38,5 +45,11 @@ function sendMove()
   outgoingMsg.data.board = game.board;
   outgoingMsg.data.id = game.gameID;
   outgoingMsg.data.player = game.player;
+  socket.send(JSON.stringify(outgoingMsg));
+}
+function sendEnd()
+{
+  var outgoingMsg = Messages.GameEnd_o;
+  outgoingMsg.data = game.player;
   socket.send(JSON.stringify(outgoingMsg));
 }

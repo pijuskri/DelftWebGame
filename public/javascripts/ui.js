@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $("td").click(function(){
-      if(game.gameStarted && game.yourTurn) game.select($(this));
+      if(game.gameStarted && game.yourTurn && !game.gameEnd) game.select($(this));
       //alert(GameState.selected);
   });
   //$("td").loadBoard(); 

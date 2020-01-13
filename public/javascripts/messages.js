@@ -46,6 +46,13 @@
   };
   exports.Turn_j = JSON.stringify(exports.Turn_o);
 
+  exports.GameEnd_s = "The game has ended";
+  exports.GameEnd_o = {
+    type: exports.GameEnd_s,
+    data: null
+  };
+  exports.GameEnd_j = JSON.stringify(exports.GameEnd_o);
+
   
 })(typeof exports === "undefined" ? (this.Messages = {}) : exports);
 //if exports is undefined, we are on the client; else the server
