@@ -8,16 +8,21 @@ socket.onmessage = function(event){
     game.board = incomingMsg.data;
     $("td").loadBoard(); 
     if(game.gameStarted && game.board)game.kingCheck();
+    var audio = new Audio('../sound.wav');
+    audio.volume = 0.2;
+    audio.play();
     //console.log("loaded"+game.board );
   }
   if(incomingMsg.type == Messages.PlayerAss_s)
   {
     game.player = incomingMsg.data.player;
     game.gameID = incomingMsg.data.id;
+    $("#exit").hide();
     //alert(game.player);
   }
   if(incomingMsg.type == Messages.GameStart_s)
   {
+    
     game.gameStarted=true;
     //alert("game has started");
   }
@@ -32,6 +37,8 @@ socket.onmessage = function(event){
       game.gameEnd = true;
       if(incomingMsg.data==game.player) alert("You won!");
       else alert("You lost..");
+      $("#exit").show();
+      
   }
   
 }

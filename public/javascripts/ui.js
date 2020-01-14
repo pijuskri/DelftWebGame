@@ -3,6 +3,11 @@ $(document).ready(function(){
       if(game.gameStarted && game.yourTurn && !game.gameEnd) game.select($(this));
       //alert(GameState.selected);
   });
+  $("#play").click(function(){
+    
+    //alert(GameState.selected);
+  });
+  
   //$("td").loadBoard(); 
 });
 $.fn.loadBoard = function()

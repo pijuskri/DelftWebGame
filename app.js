@@ -15,9 +15,15 @@ var Game = require("./gameStatus");
 app.use(express.static(__dirname + "/public"));
 //http.createServer(app).listen(port);
 
-app.use("/", function(req, res) {
+app.use("/play", function(req, res) {
   res.sendFile("public/game.html", {root: "./"});
 });
+
+app.use("/", function(req, res) {
+  res.sendFile("public/splash.html", {root: "./"});
+});
+
+
 var server = http.createServer(app);
 const wss = new websocket.Server({ server });
 
@@ -77,7 +83,31 @@ wss.on("connection", function connection(ws) {
         outgoingMsg.data = incomingMsg.data;
         gameObj.player1.send(JSON.stringify(outgoingMsg));
         gameObj.player2.send(JSON.stringify(outgoingMsg));
+        stats.closedGames++;
       }
+  });
+  con.on("close", function(code) {
+    /*
+     * code 1001 means almost always closing initiated by the client;
+     * source: https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent
+     */
+    console.log(con.id + " disconnected ...");
+
+    if (code == "1001") {
+      /*
+       * if possible, abort the game; if not, the game is already completed
+       */
+      let gameObj = websockets[con.id];
+      var outgoingMsg = messages.GameEnd_o;
+      outgoingMsg.data = 1;
+      gameObj.player1.send(JSON.stringify(outgoingMsg));
+      if(gameObj.player2)gameObj.player2.send(JSON.stringify(outgoingMsg));
+      gameObj.player1.close();
+      gameObj.player1 = null;
+      if(gameObj.player2)gameObj.player2.close();
+      gameObj.player2 = null;
+      stats.closedGames++;
+    }
   });
 });
 
