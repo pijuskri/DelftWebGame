@@ -7,7 +7,10 @@ $(document).ready(function(){
     
     //alert(GameState.selected);
   });
-  
+  var timer = setInterval(() => {
+    if(game.time>0) game.time--;
+    $("#Timer").text(game.time);
+  }, 1000);
   //$("td").loadBoard(); 
 });
 $.fn.loadBoard = function()

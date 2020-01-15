@@ -14,14 +14,24 @@ var Game = require("./gameStatus");
 
 app.use(express.static(__dirname + "/public"));
 //http.createServer(app).listen(port);
+app.set('view engine', 'ejs')
+
 
 app.use("/play", function(req, res) {
   res.sendFile("public/game.html", {root: "./"});
 });
 
-app.use("/", function(req, res) {
+app.use('/*', (req, res) => {
+  //example of data to render; here gameStatus is an object holding this information
+  //stats.peopleOnline++;
+  res.render('splash.ejs', { gamesNumber: stats.numberOfGames-1,
+     gamesCompleted: stats.closedGames, peopleOnline: stats.peopleOnline });
+})
+
+/*app.use("/", function(req, res) {
   res.sendFile("public/splash.html", {root: "./"});
 });
+*/
 
 
 var server = http.createServer(app);
@@ -37,6 +47,8 @@ wss.on("connection", function connection(ws) {
   con.id = connectionID++;
   let playerType = currentGame.addPlayer(con);
   websockets[con.id] = currentGame;
+  stats.peopleOnline++;
+  console.log(stats.peopleOnline);
   
   var outgoingMsg = messages.PlayerAss_o;
   outgoingMsg.data = new Object();
@@ -47,7 +59,6 @@ wss.on("connection", function connection(ws) {
   outgoingMsg = messages.UpdateLocal_o;
   outgoingMsg.data = currentGame.board;
   con.send(JSON.stringify(outgoingMsg));
-  //let's slow down the server response time a bit to make the change visible on the client side
 
   if(currentGame.player1&&currentGame.player2)
   {
@@ -106,7 +117,9 @@ wss.on("connection", function connection(ws) {
       gameObj.player1 = null;
       if(gameObj.player2)gameObj.player2.close();
       gameObj.player2 = null;
-      stats.closedGames++;
+      //stats.closedGames++;
+      stats.peopleOnline-=2;
+      stats.numberOfGames--;
     }
   });
 });

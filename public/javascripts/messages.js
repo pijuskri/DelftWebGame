@@ -53,6 +53,14 @@
   };
   exports.GameEnd_j = JSON.stringify(exports.GameEnd_o);
 
+  exports.Stats_s = "Have some stats";
+  exports.Stats_o = {
+    type: exports.Stats_s,
+    data: null
+  };
+  exports.Stats_j = JSON.stringify(exports.Stats_o);
+
+
   
 })(typeof exports === "undefined" ? (this.Messages = {}) : exports);
 //if exports is undefined, we are on the client; else the server

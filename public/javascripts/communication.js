@@ -11,13 +11,15 @@ socket.onmessage = function(event){
     var audio = new Audio('../sound.wav');
     audio.volume = 0.2;
     audio.play();
+    game.movesMade++;
+    $("#Moves").text(game.movesMade);
     //console.log("loaded"+game.board );
   }
   if(incomingMsg.type == Messages.PlayerAss_s)
   {
     game.player = incomingMsg.data.player;
     game.gameID = incomingMsg.data.id;
-    $("#exit").hide();
+    //$("#exit").hide();
     //alert(game.player);
   }
   if(incomingMsg.type == Messages.GameStart_s)
@@ -29,6 +31,8 @@ socket.onmessage = function(event){
   if(incomingMsg.type == Messages.Turn_s)
   {
     game.yourTurn=true;
+    $("#Turn").val = "It is your turn";
+    game.time = 60;
     //alert("game has started");
   }
   if(incomingMsg.type == Messages.GameEnd_s)
@@ -37,7 +41,7 @@ socket.onmessage = function(event){
       game.gameEnd = true;
       if(incomingMsg.data==game.player) alert("You won!");
       else alert("You lost..");
-      $("#exit").show();
+      //$("#exit").show();
       
   }
   
@@ -57,6 +61,6 @@ function sendMove()
 function sendEnd()
 {
   var outgoingMsg = Messages.GameEnd_o;
-  outgoingMsg.data = game.player;
+  outgoingMsg.data = (game.player+1)%2;
   socket.send(JSON.stringify(outgoingMsg));
 }

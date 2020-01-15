@@ -12,8 +12,21 @@
 			</form>
 			Game number:<div id="GamesNum"></div>
 			<div id="PlayersNum"></div>
-			
+			<h3>
+                Chess masters online:
+                <%= peopleOnline %> 
+                
+                <%= gamesNumber %> 
+                <%if (gamesNumber != 1) { %>
+                    games
+                <% } else { %>
+                    game
+                <% } %>
+                running, 
+                <%= gamesCompleted %> 
+                completed
+            </h3>
 			<img alt="Chess Piece"></img>
-		</div>
+        </div>
 	</body>
 </html>

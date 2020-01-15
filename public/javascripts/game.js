@@ -10,6 +10,8 @@ var game = {
     yourTurn:true,
     check: false,
     gameEnd:false,
+    movesMade:-1,
+    time:0,
     movePiece : function (from, to)
     {
         //console.log(to.charCodeAt(0)-65);
@@ -37,6 +39,8 @@ var game = {
             this.selected = null;
             sendMove();
             //this.yourTurn = false;
+            $("#Turn").val = "It is not your turn";
+            this.time = 0;
         }
         else if(this.selected && this.selected.adress.row==adress.row && this.selected.adress.col==adress.col)
         {
@@ -46,7 +50,13 @@ var game = {
         }
         else
         {
+            this.selected = null;
+            $("td").css("background-color", "white");
             input.css({"background-color":'red'});
+            setTimeout(() => {
+                input.css({"background-color":'white'});
+            }, 2000);
+            
         }
         //input.addClass("click");
         
@@ -206,7 +216,10 @@ var game = {
     g : function(y,x)
     {
         var f = {row:this.c(y,0,7),col:this.c(x,0,7)};
-        return this.canBeAttacked(f)||this.getAt(f);
+        var b;
+        if(!this.getAt(f)) b = this.canBeAttacked(f);
+        else b = this.canBeAttacked(f)||this.getAt(f).player==this.player;
+        return b;
     },
     c : function(i,min,max)
     {
