@@ -9,6 +9,7 @@ $(document).ready(function(){
   });
   var timer = setInterval(() => {
     if(game.time>0) game.time--;
+    else game.makeMove();
     $("#Timer").text(game.time);
   }, 1000);
   //$("td").loadBoard(); 

@@ -16,16 +16,29 @@ app.use(express.static(__dirname + "/public"));
 //http.createServer(app).listen(port);
 app.set('view engine', 'ejs')
 
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 app.use("/play", function(req, res) {
   res.sendFile("public/game.html", {root: "./"});
 });
 
 app.use('/*', (req, res) => {
-  //example of data to render; here gameStatus is an object holding this information
   //stats.peopleOnline++;
+  //res.clearCookie('user');
+  if(!req.cookies.user)
+  {
+    res.cookie("user", 0);
+  }
+  else 
+  {
+    res.cookie("user", parseFloat(req.cookies.user)+0.5);
+  }
+  
+  console.log(req.cookies.user);
+  //res.send(req.cookies);
   res.render('splash.ejs', { gamesNumber: stats.numberOfGames-1,
-     gamesCompleted: stats.closedGames, peopleOnline: stats.peopleOnline });
+     gamesCompleted: stats.closedGames, peopleOnline: stats.peopleOnline, timesLogin: req.cookies.user-0.5 });
 })
 
 /*app.use("/", function(req, res) {

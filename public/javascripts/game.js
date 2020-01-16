@@ -34,13 +34,7 @@ var game = {
         {
             //console.log(input);
             this.movePiece(this.selected.adress,adress);
-            $("td").loadBoard().css("background-color", "white");
-            this.selected.html.css("background-color", "white");
-            this.selected = null;
-            sendMove();
-            //this.yourTurn = false;
-            $("#Turn").val = "It is not your turn";
-            this.time = 0;
+            this.makeMove();
         }
         else if(this.selected && this.selected.adress.row==adress.row && this.selected.adress.col==adress.col)
         {
@@ -66,6 +60,16 @@ var game = {
         
         //if(this.selected)console.log( this.selected.adress. adress);
     },
+    makeMove:function()
+    {
+        $("td").loadBoard().css("background-color", "white");
+        this.selected.html.css("background-color", "white");
+        this.selected = null;
+        sendMove();
+        //this.yourTurn = false;
+        $("#Turn").val = "It is not your turn";
+        this.time = 0;
+    }
     getAt : function(adress)
     {
         //console.log(adress.col);
