@@ -1,103 +1,129 @@
 <html>
-	<head>
-		<title>In game</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-	</head>
-	<body>
-		<div id="Main">
-			<table id="Game">
-				<tr id="A">
-					<td class="1"></td>
-					<td class="2"></td>
-					<td class="3"></td>
-					<td class="4"></td>
-					<td class="5"></td>
-					<td class="6"></td>
-					<td class="7"></td>
-					<td class="8"></td>
-				</tr>
-				<tr id="B">
-					<td class="1"></td>
-					<td class="2"></td>
-					<td class="3"></td>
-					<td class="4"></td>
-					<td class="5"></td>
-					<td class="6"></td>
-					<td class="7"></td>
-					<td class="8"></td>
-				</tr><tr id="C">
-					<td class="1"></td>
-					<td class="2"></td>
-					<td class="3"></td>
-					<td class="4"></td>
-					<td class="5"></td>
-					<td class="6"></td>
-					<td class="7"></td>
-					<td class="8"></td>
-				</tr><tr id="D">
-					<td class="1"></td>
-					<td class="2"></td>
-					<td class="3"></td>
-					<td class="4"></td>
-					<td class="5"></td>
-					<td class="6"></td>
-					<td class="7"></td>
-					<td class="8"></td>
-				</tr><tr id="E">
-					<td class="1"></td>
-					<td class="2"></td>
-					<td class="3"></td>
-					<td class="4"></td>
-					<td class="5"></td>
-					<td class="6"></td>
-					<td class="7"></td>
-					<td class="8"></td>
-				</tr><tr id="F">
-					<td class="1"></td>
-					<td class="2"></td>
-					<td class="3"></td>
-					<td class="4"></td>
-					<td class="5"></td>
-					<td class="6"></td>
-					<td class="7"></td>
-					<td class="8"></td>
-				</tr>
-				<tr id="G">
-					<td class="1"></td>
-					<td class="2"></td>
-					<td class="3"></td>
-					<td class="4"></td>
-					<td class="5"></td>
-					<td class="6"></td>
-					<td class="7"></td>
-					<td class="8"></td>
-				</tr>
-				<tr id="H">
-					<td class="1"></td>
-					<td class="2"></td>
-					<td class="3"></td>
-					<td class="4"></td>
-					<td class="5"></td>
-					<td class="6"></td>
-					<td class="7"></td>
-					<td class="8"></td>
-				</tr>
-			</table>
-			<div id="SideMenu">
-				<div id="Title">Game menu</div>
-				<div id="Turn">It is your turn</div>
-				Time left:<div id="Timer"></div>
-				Moves made:<div id="Moves"></div>
-				<form action="/" method="get">
-					<button id="exit" type="submit">Exit</button>
-				</form>
-			</div>
-		</div>
-		<!--<script src="javascripts/game.js"></script>-->
-		<script src="javascripts/ui.js"></script>
-		<script src="javascripts/communication.js"></script>
-		<script src="javascripts/game.js"></script>
-		<script src="javascripts/messages.js"></script>
-	</body>
+  <head>
+    <title>TOCG</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+    <link rel="icon" href="./stylesheets/icon.png" />
+  </head>
+  <body>
+    <div class="gameBannerTop">
+      <div class="gameBannerTopInfo">
+        <h1 class="time">| 00:00 |</h1>
+        <h1 class="movesMade">Moves Made: 0</h1>
+        <h1 class="points">0</h1>
+      </div>
+    </div>
+    <!-- <img src="./stylesheets/Game Screen.png" alt="game screen" /> -->
+    <h1 class="gridTwo">ABCDEFGH</h1>
+    <h1 class="gridThree">12345678</h1>
+    <table id="Game">
+      <tr id="A">
+        <td class="1 black"></td>
+        <td class="2 gray"></td>
+        <td class="3 black"></td>
+        <td class="4 gray"></td>
+        <td class="5 black"></td>
+        <td class="6 gray"></td>
+        <td class="7 black"></td>
+        <td class="8 gray"></td>
+      </tr>
+      <tr id="B">
+        <td class="1 gray"></td>
+        <td class="2 black"></td>
+        <td class="3 gray"></td>
+        <td class="4 black"></td>
+        <td class="5 gray"></td>
+        <td class="6 black"></td>
+        <td class="7 gray"></td>
+        <td class="8 black"></td>
+      </tr>
+      <tr id="C">
+        <td class="1 black"></td>
+        <td class="2 gray"></td>
+        <td class="3 black"></td>
+        <td class="4 gray"></td>
+        <td class="5 black"></td>
+        <td class="6 gray"></td>
+        <td class="7 black"></td>
+        <td class="8 gray"></td>
+      </tr>
+      <tr id="D">
+        <td class="1 gray"></td>
+        <td class="2 black"></td>
+        <td class="3 gray"></td>
+        <td class="4 black"></td>
+        <td class="5 gray"></td>
+        <td class="6 black"></td>
+        <td class="7 gray"></td>
+        <td class="8 black"></td>
+      </tr>
+      <tr id="E">
+        <td class="1 black"></td>
+        <td class="2 gray"></td>
+        <td class="3 black"></td>
+        <td class="4 gray"></td>
+        <td class="5 black"></td>
+        <td class="6 gray"></td>
+        <td class="7 black"></td>
+        <td class="8 gray"></td>
+      </tr>
+      <tr id="F">
+        <td class="1 gray"></td>
+        <td class="2 black"></td>
+        <td class="3 gray"></td>
+        <td class="4 black"></td>
+        <td class="5 gray"></td>
+        <td class="6 black"></td>
+        <td class="7 gray"></td>
+        <td class="8 black"></td>
+      </tr>
+      <tr id="G">
+        <td class="1 black"></td>
+        <td class="2 gray"></td>
+        <td class="3 black"></td>
+        <td class="4 gray"></td>
+        <td class="5 black"></td>
+        <td class="6 gray"></td>
+        <td class="7 black"></td>
+        <td class="8 gray"></td>
+      </tr>
+      <tr id="H">
+        <td class="1 gray"></td>
+        <td class="2 black"></td>
+        <td class="3 gray"></td>
+        <td class="4 black"></td>
+        <td class="5 gray"></td>
+        <td class="6 black"></td>
+        <td class="7 gray"></td>
+        <td class="8 black"></td>
+      </tr>
+    </table>
+
+    <h1 class="gridOne">ABCDEFGH</h1>
+    <h1 class="gridFour">12345678</h1>
+
+    <h1 class="turn">Your Turn</h1>
+    <!-- <div id="SideMenu">
+      <div id="GameTitle">Game menu</div>
+      <div id="Turn">It is your turn</div>
+      Time left:
+      <div id="Timer"></div>
+      Moves made:
+      <div id="Moves"></div>
+      <form action="/" method="get">
+        <button id="exit" type="submit">Exit</button>
+      </form>
+    </div> -->
+    <!-- <script src="javascripts/ui.js"></script>
+    <script src="javascripts/communication.js"></script>
+    <script src="javascripts/game.js"></script>
+    <script src="javascripts/messages.js"></script> -->
+    <div class="gameBannerBot">
+      <div class="gameBannerBotInfo">
+        <h1 class="time">| 00:00 |</h1>
+        <h1 class="movesMade">Moves Made: 0</h1>
+        <h1 class="points">0</h1>
+      </div>
+    </div>
+  </body>
 </html>
