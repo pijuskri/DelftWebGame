@@ -51,9 +51,20 @@ td {
   font-family: newsflashbb;
   font-size: 11vw;
   margin-left: 7%;
-  position: absolute;
+  position: relative;
   margin-top: 3%;
   margin-bottom: 5%;
+}
+#Title::before {
+  content: "||";
+  width: 10%;
+  height: 100%;
+  position: absolute;
+
+  top: 0px;
+  left: -60px;
+  z-index: 1;
+  transition: all 0.2s linear;
 }
 
 #play {
@@ -70,7 +81,11 @@ td {
   transition: background 1s;
 }
 #play:hover {
-  background: rgb(48, 47, 47);
+  background: #585858;
+}
+#play:active {
+  color: black;
+  background: #585858;
 }
 .banner {
   background: black;
@@ -141,10 +156,11 @@ td {
 .bottomText1 {
   color: white;
   font-family: newsflashbb;
-  font-size: 4.8vw;
+  font-size: 2.5vw;
   position: absolute;
+  height: 10%;
   bottom: 0;
-  left: 13%;
+  left: 23%;
 }
 
 .bottomText2 {
@@ -152,32 +168,45 @@ td {
   font-family: newsflashbb;
   font-size: 2.5vw;
   position: absolute;
-  height: 10%;
+  height: 5%;
   bottom: 0;
-  left: 55%;
+  left: 23%;
   line-height: 90%;
 }
 .bottomText3 {
   color: white;
   font-family: newsflashbb;
   font-size: 2.5vw;
-  height: 5%;
+  height: 10%;
   position: absolute;
   bottom: 0;
-  left: 65%;
+  left: 63%;
+  line-height: 90%;
+}
+.bottomText4 {
+  color: white;
+  font-family: newsflashbb;
+  font-size: 2.5vw;
+  position: absolute;
+  height: 5%;
+  bottom: 0;
+  left: 63%;
   line-height: 90%;
 }
 .click {
   animation-name: example;
   animation-duration: 2s;
 }
+
+/* THIS IS A SEPARATOR FOR THE SPLASH AND GAME SCREEN CSS  */
+
 table {
   padding: 10px;
   table-layout: fixed;
   border-collapse: collapse;
   border: 1vh black solid;
   position: absolute;
-  top: 17.5%;
+  top: 17.4%;
   left: 34%;
   width: 30%;
   height: 40%;
@@ -188,6 +217,7 @@ td.black {
   height: 50px;
   border: solid #585858;
   border-radius: 5%;
+  position: relative;
 }
 td.gray {
   background: #c3c3c3;
@@ -195,73 +225,109 @@ td.gray {
   height: 50px;
   border: none;
 }
-.gameBannerTop {
+.gameBannerUser2 {
   background: black;
   background-size: cover;
   position: absolute;
   top: 0;
   width: 100%;
-  height: 13%;
+  height: 10%;
 }
-.gameBannerTopInfo {
+.gameBannerUser2Info {
   background: white;
   position: absolute;
   top: 0;
   left: 10%;
   width: 80%;
-  height: 70%;
+  height: 80%;
 }
-.gameBannerBot {
+.gameBannerUser1 {
   background: black;
   background-size: cover;
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 13%;
+  height: 10%;
 }
-.gameBannerBotInfo {
+.gameBannerUser1Info {
   background: white;
   position: absolute;
   bottom: 0;
   left: 10%;
   width: 80%;
-  height: 70%;
+  height: 80%;
 }
 .time {
   position: absolute;
   font-family: newsflashbb;
   left: 9%;
-  font-size: 10vh;
+  font-size: 8vh;
 }
 .movesMade {
   position: absolute;
   font-family: newsflashbb;
   left: 39%;
-  font-size: 10vh;
+  font-size: 8vh;
 }
 .points {
   position: absolute;
   font-family: newsflashbb;
   left: 89%;
-  font-size: 10vh;
+  font-size: 8vh;
 }
 .turn {
   position: absolute;
   font-family: newsflashbb;
   color: black;
-  top: 40%;
-  left: 10%;
+  top: 44%;
+  left: 7%;
   font-size: 12vh;
 }
 .gridOne {
-  position: absolute;
-  font-family: newsflashbb;
-  color: black;
-  top: 50%;
-  font-size: 12vh;
-  text-rendering: optimizeLegibility;
+  position: fixed;
+  top: 84%;
+  left: 34.4%;
+  width: 30.4%;
+  height: 4%;
 }
-
+.gridTwo {
+  position: fixed;
+  top: 12%;
+  left: 34.4%;
+  width: 30.4%;
+  height: 4%;
+}
+.gridThree {
+  position: fixed;
+  top: 17.9%;
+  right: 32%;
+  height: 65%;
+}
+.gridFour {
+  position: fixed;
+  top: 17.9%;
+  left: 31.5%;
+  height: 65%;
+}
+#exit {
+  font-family: newsflashbb;
+  background: black;
+  color: white;
+  font-size: 12vh;
+  position: absolute;
+  right: 3.5%;
+  top: 35%;
+  width: 25%;
+  height: 30%;
+  transition: background 1s;
+}
+#exit:hover {
+  background: #585858;
+}
+#exit:active {
+  color: black;
+  background: #585858;
+}
 /*
 a {
   color: #00b7ff;

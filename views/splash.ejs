@@ -1,32 +1,35 @@
 <html>
-	<head>
-		<title>A totally original chess game</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-	</head>
-	<body>
-		<div id="Menu">
-			<div id="Title">Totally original chess game</div>
-			<form action="/play" method="get">
-				<button id="play" type="submit">PLAY</button>
-			</form>
-			Game number:<div id="GamesNum"></div>
-			<div id="PlayersNum"></div>
-			<h3>
-                Chess masters online:
-                <%= peopleOnline %> 
-                
-                <%= gamesNumber %> 
-                <%if (gamesNumber != 1) { %>
-                    games
-                <% } else { %>
-                    game
-                <% } %>
-                running, 
-                <%= gamesCompleted %> 
-                completed
-            </h3>
-			<img alt="Chess Piece"></img>
-        </div>
-	</body>
+  <head>
+    <title>TOCG</title>
+    <link rel="icon" href="./stylesheets/icon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+  </head>
+
+  <body>
+    <div class="headDiv">
+      <header class="header" width="100%" height="100%">
+        <img src="./stylesheets/TOCG.png" alt="tocg" class="iconText" />
+        <img src="./stylesheets/icon.png" alt="icon" class="iconPic" />
+      </header>
+    </div>
+    <div id="Title">TotallyOriginalChessGame</div>
+    <form action="/play" method="get">
+      <button id="play" type="submit">PLAY</button>
+    </form>
+    <div class="banner"></div>
+    <div class="banner2"></div>
+    <div class="banner3"></div>
+    <div class="banner4"></div>
+    <div class="banner5"></div>
+    <img src="./stylesheets/triangle.png" alt="" class="banner6" />
+    <img src="./stylesheets/triangle.png" alt="" class="banner7" />
+    <div class="bottomText1">Chessmasters Online : <%= peopleOnline %></div>
+    <div class="bottomText2">
+      Current Staredowns : <%= gamesNumber %> <%if (gamesNumber != 1) { %> games
+      <% } else { %> game <% } %>
+    </div>
+    <div class="bottomText3">Games Completed : <%= gamesCompleted %></div>
+    <div class="bottomText4">Times Logged In :</div>
+  </body>
 </html>
