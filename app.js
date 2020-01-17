@@ -70,7 +70,9 @@ wss.on("connection", function connection(ws) {
   con.send(JSON.stringify(outgoingMsg));
 
   outgoingMsg = messages.UpdateLocal_o;
-  outgoingMsg.data = currentGame.board;
+  outgoingMsg.data = new Object();
+  outgoingMsg.data.board = currentGame.board;
+  outgoingMsg.data.player = 1;
   con.send(JSON.stringify(outgoingMsg));
 
   if(currentGame.player1&&currentGame.player2)
@@ -93,7 +95,9 @@ wss.on("connection", function connection(ws) {
         gameObj.board = incomingMsg.data.board;
         var player = incomingMsg.data.player;
         outgoingMsg = messages.UpdateLocal_o;
-        outgoingMsg.data = gameObj.board;
+        outgoingMsg.data = new Object();
+        outgoingMsg.data.board = gameObj.board;
+        outgoingMsg.data.player = player;
         gameObj.player1.send(JSON.stringify(outgoingMsg));
         if(gameObj.player2) gameObj.player2.send(JSON.stringify(outgoingMsg));
         if(player==1 && gameObj.player2) gameObj.player2.send(messages.Turn_j);

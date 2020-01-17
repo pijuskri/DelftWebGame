@@ -5,15 +5,22 @@ socket.onmessage = function(event){
   console.log(incomingMsg.type);
   if(incomingMsg.type == Messages.UpdateLocal_s)
   {
-    game.board = incomingMsg.data;
+    console.log(incomingMsg.data);
+    game.board = incomingMsg.data.board;
+    var player = incomingMsg.data.player;
     $("td").loadBoard(); 
     if(game.gameStarted && game.board)game.kingCheck();
     var audio = new Audio('../sound.wav');
     audio.volume = 0.2;
     audio.play();
-    game.movesMade++;
-    $(".movesMade").text("Moves made: "+game.movesMade);
-    $(".points").text(game.calcPoints(1));
+    if(player==1) game.movesMade1++;
+    else game.movesMade2++
+    //$(".gameBannerUser2Info .movesMade:first-child").text("Moves made: "+game.movesMade);
+    $(".gameBannerUser1Info").children(".movesMade").text("Moves made: "+game.movesMade1);
+    $(".gameBannerUser2Info").children(".movesMade").text("Moves made: "+game.movesMade2);
+    
+    $(".gameBannerUser1Info").children(".points").text(game.calcPoints(1));
+    $(".gameBannerUser1Info").children(".points").text(game.calcPoints(2));
     //console.log("loaded"+game.board );
   }
   if(incomingMsg.type == Messages.PlayerAss_s)

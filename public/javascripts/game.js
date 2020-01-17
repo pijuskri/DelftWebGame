@@ -6,12 +6,13 @@ var game = {
     player:null,
     board:null,
     selected:null,
-    gameStarted:false,
-    yourTurn:false,
+    gameStarted:true,
+    yourTurn:true,
     check: false,
     gameEnd:false,
-    movesMade:-1,
-    time:0,
+    movesMade1:-1,
+    movesMade2:0,
+    time1:3,
     movePiece : function (from, to)
     {
         this.board[to.row][to.col] = this.board[from.row][from.col];
@@ -57,9 +58,9 @@ var game = {
         if(this.selected)this.selected.html.css("background-color", this.selected.color);
         this.selected = null;
         sendMove();
-        this.yourTurn = false;
+        //this.yourTurn = false;
         $(".turn").text("It is your opponents turn");
-        this.time = 0;
+        this.time = 1;
     },
     getAt : function(adress)
     {
