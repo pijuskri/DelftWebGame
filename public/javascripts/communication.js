@@ -12,39 +12,43 @@ socket.onmessage = function(event){
     audio.volume = 0.2;
     audio.play();
     game.movesMade++;
-    $("#Moves").text(game.movesMade);
+    $(".movesMade").text("Moves made: "+game.movesMade);
+    $(".points").text(game.calcPoints(1));
     //console.log("loaded"+game.board );
   }
   if(incomingMsg.type == Messages.PlayerAss_s)
   {
     game.player = incomingMsg.data.player;
     game.gameID = incomingMsg.data.id;
-    //$("#exit").hide();
-    //alert(game.player);
+    if(game.player==1)alert("Waiting for other player to join...");
   }
   if(incomingMsg.type == Messages.GameStart_s)
   {
-    
     game.gameStarted=true;
-    //alert("game has started");
+    if(game.player==1)alert("Player 2 joined and the game has started!");
+    else alert("Game has started!");
   }
   if(incomingMsg.type == Messages.Turn_s)
   {
     game.yourTurn=true;
-    $("#Turn").val = "It is your turn";
+    $(".turn").text("It is your turn");
     game.time = 60;
     //alert("game has started");
   }
   if(incomingMsg.type == Messages.GameEnd_s)
   {
-      console.log("Player "+incomingMsg.data+" has won!");
-      game.gameEnd = true;
-      if(incomingMsg.data==game.player) alert("You won!");
+    console.log(incomingMsg.data);
+    if(incomingMsg.data.type=="Closed")
+    {
+      alert("Other player has quit, game has ended");
+    }
+    else
+    {
+      if(incomingMsg.data.player==game.player) alert("You won!");
       else alert("You lost..");
-      //$("#exit").show();
-      
+    }
+    game.gameEnd = true;
   }
-  
 }
 socket.onopen = function(){
     //socket.send("Hello from the client!");

@@ -6,73 +6,63 @@ var game = {
     player:null,
     board:null,
     selected:null,
-    gameStarted:true,
-    yourTurn:true,
+    gameStarted:false,
+    yourTurn:false,
     check: false,
     gameEnd:false,
     movesMade:-1,
     time:0,
     movePiece : function (from, to)
     {
-        //console.log(to.charCodeAt(0)-65);
         this.board[to.row][to.col] = this.board[from.row][from.col];
         this.board[from.row][from.col] = null;
     },
     select : function(input)
     {
         var adress = this.convN( input.parent().attr("id")+input.attr("class"));
-        //console.log(this.getAt(adress));
         if(this.selected==undefined && this.getAt(adress) && this.getAt(adress).player==this.player)
         {
-            //console.log("selected");
-            input.css("background-color", "#c9c9e2");
             this.selected = new Object();
             this.selected.adress=adress;
             this.selected.html=input;
+            this.selected.color = input.css("background-color");
+            input.css("background-color", "#c9c9e2");
         }
         else if(this.selected && this.canMove(this.selected.adress,adress,false))
         {
-            //console.log(input);
             this.movePiece(this.selected.adress,adress);
             this.makeMove();
         }
         else if(this.selected && this.selected.adress.row==adress.row && this.selected.adress.col==adress.col)
         {
-            this.selected.html.css("background-color", "white");
-            $("td").css("background-color", "white");
+            this.selected.html.css("background-color", this.selected.color);
+            //$("td").css("background-color", "white");
             this.selected = null;
         }
         else
         {
+            if(this.selected)this.selected.html.css("background-color", this.selected.color);
             this.selected = null;
-            $("td").css("background-color", "white");
+            //$("td").css("background-color", "white");
+            var tempColor = input.css("background-color");
             input.css({"background-color":'red'});
             setTimeout(() => {
-                input.css({"background-color":'white'});
+                input.css({"background-color":tempColor});
             }, 2000);
             
         }
-        //input.addClass("click");
-        
-        input.animate({backgroundColor: 'red'}, 400)
-            .delay(400)
-            .animate({backgroundColor: 'red'}, 1000);
-        
-        //if(this.selected)console.log( this.selected.adress. adress);
     },
     makeMove:function()
     {
-        $("td").loadBoard().css("background-color", "white");
-        this.selected.html.css("background-color", "white");
+        if(this.selected)this.selected.html.css("background-color", this.selected.color);
         this.selected = null;
         sendMove();
-        //this.yourTurn = false;
-        $("#Turn").val = "It is not your turn";
+        this.yourTurn = false;
+        $(".turn").text("It is your opponents turn");
         this.time = 0;
-    }
+    },
     getAt : function(adress)
     {
-        //console.log(adress.col);
         return this.board[adress.row][adress.col];
     },
     canMove : function(from,to,king)//king-bool to indicate if this is a king check
@@ -247,6 +237,23 @@ var game = {
         cor.row = adress.charCodeAt(0)-65;
         cor.col = adress.charAt(1)-1;
         return cor;
+    },
+    calcPoints : function(player)
+    {
+        var sum = 0;
+        for(var i = 0; i < this.board.length; i++) {
+            for(var j = 0; j < this.board[i].length; j++) {
+                if(this.board[i][j] && this.board[i][j].player!=player)
+                {
+                    var p = this.board[i][j];
+                    if(p.name=="pawn")sum++;
+                    if(p.name=="bishop"||p.name=="knight")sum+=3;
+                    if(p.name=="rook")sum+=5;
+                    if(p.name=="queen")sum+=9;
+                }
+            }
+        }
+        return 39-sum;
     }
     //$("td").loadBoard();
 }

@@ -104,7 +104,9 @@ wss.on("connection", function connection(ws) {
       {
         console.log("Player "+incomingMsg.data+" has won!");
         var outgoingMsg = messages.GameEnd_o;
-        outgoingMsg.data = incomingMsg.data;
+        outgoingMsg.data = new Object();
+        outgoingMsg.data.player = incomingMsg.data;
+        outgoingMsg.data.type = "Win";
         gameObj.player1.send(JSON.stringify(outgoingMsg));
         gameObj.player2.send(JSON.stringify(outgoingMsg));
         stats.closedGames++;
@@ -123,7 +125,9 @@ wss.on("connection", function connection(ws) {
        */
       let gameObj = websockets[con.id];
       var outgoingMsg = messages.GameEnd_o;
-      outgoingMsg.data = 1;
+      outgoingMsg.data = new Object();
+      outgoingMsg.data.player = 1;
+      outgoingMsg.data.type = "Closed";
       gameObj.player1.send(JSON.stringify(outgoingMsg));
       if(gameObj.player2)gameObj.player2.send(JSON.stringify(outgoingMsg));
       gameObj.player1.close();
@@ -131,7 +135,8 @@ wss.on("connection", function connection(ws) {
       if(gameObj.player2)gameObj.player2.close();
       gameObj.player2 = null;
       //stats.closedGames++;
-      stats.peopleOnline-=2;
+      stats.peopleOnline--;
+      if(gameObj.player2)stats.peopleOnline--;
       stats.numberOfGames--;
     }
   });

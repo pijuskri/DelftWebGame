@@ -1,0 +1,8 @@
+Game screen:
+Clicking on any td element will initiate a selection of a piece.
+If a pice was already selected make a move to this selection
+
+Clicking the exit button will quit the game either after the game has ended or mid-game
+
+Splash screen:
+Clicking the play button will direct the user to the game screen and will wait for another player to join.
