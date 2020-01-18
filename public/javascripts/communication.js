@@ -20,7 +20,7 @@ socket.onmessage = function(event){
     $(".gameBannerUser2Info").children(".movesMade").text("Moves made: "+game.movesMade2);
     
     $(".gameBannerUser1Info").children(".points").text(game.calcPoints(1));
-    $(".gameBannerUser1Info").children(".points").text(game.calcPoints(2));
+    $(".gameBannerUser2Info").children(".points").text(game.calcPoints(2));
     //console.log("loaded"+game.board );
   }
   if(incomingMsg.type == Messages.PlayerAss_s)

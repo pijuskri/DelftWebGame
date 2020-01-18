@@ -27,7 +27,7 @@ var game = {
             this.selected.adress=adress;
             this.selected.html=input;
             this.selected.color = input.css("background-color");
-            input.css("background-color", "#c9c9e2");
+            input.css("background-color", "#515BAC");
         }
         else if(this.selected && this.canMove(this.selected.adress,adress,false))
         {
