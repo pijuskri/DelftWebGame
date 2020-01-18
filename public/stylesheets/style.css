@@ -60,11 +60,8 @@ td {
   width: 10%;
   height: 100%;
   position: absolute;
-
-  top: 0px;
   left: -60px;
   z-index: 1;
-  transition: all 0.2s linear;
 }
 
 #play {
@@ -82,6 +79,7 @@ td {
 }
 #play:hover {
   background: #585858;
+  animation: playMove 1s infinite;
 }
 #play:active {
   color: black;
@@ -89,116 +87,86 @@ td {
 }
 .banner {
   background: black;
+  position: absolute;
+}
+.nonTriangle {
+  bottom: 0;
   background-size: cover;
-  color: white;
+}
+.banner1 {
   width: 76%;
   height: 10%;
-  position: absolute;
-  bottom: 0;
   left: 12%;
 }
 .banner2 {
-  background: black;
-  background-size: cover;
-  color: white;
   width: 10%;
   height: 13%;
-  position: absolute;
-  bottom: 0;
   left: 0%;
 }
 .banner3 {
-  background: black;
-  background-size: cover;
-  color: white;
   width: 10%;
   height: 13%;
-  position: absolute;
-  bottom: 0;
   right: 0%;
 }
 .banner4 {
-  background: black;
-  background-size: cover;
-  color: white;
   width: 14%;
   height: 10%;
-  position: absolute;
-  bottom: 0;
   right: 0%;
 }
 .banner5 {
-  background: black;
-  background-size: cover;
   width: 2%;
   height: 10%;
-  position: absolute;
-  bottom: 0%;
   left: 10%;
 }
 .banner6 {
-  background: black;
   width: 2%;
   height: 3%;
   left: 10%;
   bottom: 10%;
-  position: absolute;
 }
 .banner7 {
-  background: black;
   width: 2%;
   height: 3%;
   right: 9%;
   bottom: 10%;
   transform: rotateY(180deg);
-  position: absolute;
 }
-.bottomText1 {
+.bottomText {
   color: white;
   font-family: newsflashbb;
   font-size: 2.5vw;
   position: absolute;
-  height: 10%;
   bottom: 0;
+  line-height: 90%;
+}
+.bottomText1 {
+  height: 10%;
   left: 23%;
 }
 
 .bottomText2 {
-  color: white;
-  font-family: newsflashbb;
-  font-size: 2.5vw;
-  position: absolute;
   height: 5%;
-  bottom: 0;
   left: 23%;
-  line-height: 90%;
 }
 .bottomText3 {
-  color: white;
-  font-family: newsflashbb;
-  font-size: 2.5vw;
   height: 10%;
-  position: absolute;
-  bottom: 0;
   left: 63%;
-  line-height: 90%;
 }
 .bottomText4 {
-  color: white;
-  font-family: newsflashbb;
-  font-size: 2.5vw;
-  position: absolute;
   height: 5%;
-  bottom: 0;
   left: 63%;
-  line-height: 90%;
 }
-.click {
-  animation-name: example;
-  animation-duration: 2s;
+@keyframes playMove {
+  50% {
+    font-size: 15vh;
+  }
+  100% {
+    font-size: 17vh;
+  }
 }
 
 /* THIS IS A SEPARATOR FOR THE SPLASH AND GAME SCREEN CSS  */
+
 body {
   height: 100vh;
 }
@@ -229,124 +197,92 @@ table {
   margin: 0;
   padding: 0;
 }
-tr {
+td {
+  width: 12.5%;
+  height: 12.5%;
+  border-radius: 5%;
   position: relative;
 }
 td.black {
   background: #585858;
-  width: 12.5%;
   border: solid #585858;
-  border-radius: 5%;
-  height: 12.5%;
-  margin: 0;
-  position: relative;
 }
 td.gray {
   background: #c3c3c3;
-  width: 12.5%;
-  height: 12.5%;
-  margin: 0;
   border: solid #c3c3c3;
-  border-radius: 5%;
-  position: relative;
+}
+.numbers {
+  position: absolute;
+  height: 140%;
+  top: -20%;
+  width: 4%;
+  box-sizing: content-box;
 }
 .numbersOne {
-  position: absolute;
-  height: 140%;
   left: 6%;
-  top: -20%;
-  width: 4%;
-  box-sizing: content-box;
 }
 .numbersTwo {
-  position: absolute;
-  height: 140%;
   left: 90%;
-  top: -20%;
-  width: 4%;
+}
+.letters {
+  position: absolute;
   box-sizing: content-box;
+  width: 78%;
+  height: 10%;
+  left: 11%;
 }
 .lettersOne {
-  position: absolute;
   top: -31%;
-  left: 11%;
-  width: 78%;
-  height: 10%;
-  box-sizing: content-box;
 }
 .lettersTwo {
-  position: absolute;
   bottom: -31%;
-  left: 11%;
-  width: 78%;
+}
+.gameBanner {
+  background: black;
+  background-size: cover;
+  position: relative;
+  width: 100%;
   height: 10%;
-  box-sizing: content-box;
 }
 .gameBannerUser2 {
-  background: black;
-  background-size: cover;
-  position: relative;
   top: 0;
-  width: 100%;
-  height: 10%;
-}
-.gameBannerUser2Info {
-  background: white;
-  position: absolute;
-  top: 0;
-  left: 10%;
-  width: 80%;
-  height: 80%;
 }
 .gameBannerUser1 {
-  background: black;
-  background-size: cover;
-  position: relative;
   bottom: 0;
-  width: 100%;
-  height: 10%;
 }
-.gameBannerUser1Info {
+.gameBannerInfo {
   background: white;
-  position: absolute;
-  bottom: 0;
   left: 10%;
   width: 80%;
   height: 80%;
 }
+.gameBannerUser2Info {
+  top: 0;
+}
+.gameBannerUser1Info {
+  bottom: 0;
+}
 .time {
-  position: absolute;
-  font-family: newsflashbb;
   left: 9%;
-  font-size: 8vh;
+  bottom: 0;
 }
 .movesMade {
-  position: absolute;
-  font-family: newsflashbb;
   left: 39%;
-  font-size: 8vh;
+  bottom: 0;
 }
 .points {
-  position: absolute;
-  font-family: newsflashbb;
   left: 89%;
-  font-size: 8vh;
+  bottom: 0;
 }
 .turn {
-  position: absolute;
-  font-family: newsflashbb;
   color: black;
   top: 41%;
-  left: -30%;
-  font-size: 8vh;
+  left: -38%;
   float: left;
 }
 #exit {
-  font-family: newsflashbb;
   background: black;
   color: white;
-  font-size: 8vh;
-  position: absolute;
   right: 1%;
   top: 35%;
   width: 25%;
@@ -355,30 +291,98 @@ td.gray {
 }
 #exit:hover {
   background: #585858;
+  animation: exitMove 1s infinite;
 }
 #exit:active {
   color: black;
   background: #585858;
 }
-
-/*
-a {
-  color: #00b7ff;
+.absolute {
+  position: absolute;
 }
-@keyframes example {
-  0% {
-    background-color: white;
-  }
-  25% {
-    background-color: red;
-  }
+.text {
+  font-family: newsflashbb;
+  font-size: 8vh;
+}
+.text::before {
+  content: "| ";
+}
+.text::after {
+  content: " |";
+}
+.error {
+  display: none;
+}
+
+@keyframes exitMove {
   50% {
-    background-color: red;
+    font-size: 7vh;
   }
   100% {
-    background-color: white;
+    font-size: 8vh;
   }
-} */
+}
+@media screen and (max-width: 860px) {
+  .text {
+    font-size: 7vh;
+  }
+}
+@media screen and (max-width: 740px) {
+  .text {
+    font-size: 6vh;
+  }
+}
+@media screen and (max-width: 700px) {
+  .table {
+    display: none;
+  }
+  .turn {
+    display: none;
+  }
+  #exit {
+    display: none;
+  }
+  .innerDiv {
+    display: none;
+  }
+  .error {
+    display: block;
+    background: #585858;
+    border: 3px solid black;
+    width: 70%;
+    height: 26%;
+    left: 15%;
+    top: 39%;
+    position: relative;
+    font-size: 5vw;
+    align-content: center;
+  }
+}
+@media screen and (max-height: 400px) {
+  .table {
+    display: none;
+  }
+  .turn {
+    display: none;
+  }
+  #exit {
+    display: none;
+  }
+  .innerDiv {
+    display: none;
+  }
+  .error {
+    display: block;
+    background: #585858;
+    border: 3px solid black;
+    width: 70%;
+    height: 22%;
+    left: 15%;
+    top: 39%;
+    position: relative;
+    font-size: 6vh;
+  }
+}
 @font-face {
   font-family: newsflashbb;
   src: url("./NewsflashBB.ttf");

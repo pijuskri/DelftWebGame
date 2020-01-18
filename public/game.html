@@ -6,17 +6,17 @@
     <link rel="icon" href="./stylesheets/icon.png" />
   </head>
   <body>
-    <div class="gameBannerUser2">
-      <div class="gameBannerUser2Info">
-        <h1 class="time">| 00:00 |</h1>
-        <h1 class="movesMade">Moves Made: 0</h1>
-        <h1 class="points">0</h1>
+    <div class="gameBannerUser2 gameBanner">
+      <div class="gameBannerUser2Info absolute gameBannerInfo">
+        <h1 class="time text absolute">| 00:00 |</h1>
+        <h1 class="movesMade text absolute">Moves Made: 0</h1>
+        <h1 class="points text absolute">0</h1>
       </div>
     </div>
     <div class="boxDiv">
       <div class="innerDiv">
-        <h1 class="turn">Your Turn</h1>
-        <img src="./stylesheets/gridOne.png" alt="lettersOne" class="lettersOne letters" />
+        <h1 class="turn absolute text">Your Turn</h1>
+        <img src="./stylesheets/gridOne.png" alt="lettersOne" class="lettersOne letters " />
         <img src="./stylesheets/gridTwo.png" alt="numbersOne" class="numbersOne numbers" />
         <img src="./stylesheets/gridTwo.png" alt="numbersTwo" class="numbersTwo numbers" />
         <table id="Game">
@@ -169,17 +169,23 @@
         <img src="./stylesheets/gridOne.png" alt="lettersTwo" class="lettersTwo letters" />
       </div>
               <form action="/" method="get">
-                <button id="exit" type="submit">Back to the Splash</button>
+                <button id="exit" type="submit" class="absolute text">Back to the Splash</button>
               </form>
+              <div class="error text">Please revert back to a bigger resolution for optimal game experience, stuff starts to look weird starting from this
+              point</div>
     </div>
 
     
     </div>
-    <div class="gameBannerUser1">
-      <div class="gameBannerUser1Info">
-        <h1 class="time">| 00:00 |</h1>
-        <h1 class="movesMade">Moves Made: 0</h1>
-        <h1 class="points">0</h1>
+    <script src="javascripts/ui.js"></script>
+    <script src="javascripts/communication.js"></script>
+    <script src="javascripts/game.js"></script>
+    <script src="javascripts/messages.js"></script>
+    <div class="gameBannerUser1 gameBanner">
+      <div class="gameBannerUser1Info absolute gameBannerInfo">
+        <h1 class="time text absolute">| 00:00 |</h1>
+        <h1 class="movesMade text absolute">Moves Made: 0</h1>
+        <h1 class="points text absolute">0</h1>
       </div>
     </div>
     <script src="javascripts/messages.js"></script>
