@@ -1,16 +1,32 @@
 $(document).ready(function(){
   $("td").click(function(){
       if(game.gameStarted && game.yourTurn && !game.gameEnd) game.select($(this));
+      else 
+      {
+        var tempColor = $(this).css("background-color");
+        $(this).css({"background-color":'red'});
+            setTimeout(() => {
+              $(this).css({"background-color":tempColor});
+            }, 2000);
+      }
       //alert(GameState.selected);
   });
   var timer = setInterval(() => {
-    if(game.time>0) game.time+1;
+    if(game.time>0) game.time--;
     else if(game.yourTurn) game.makeMove();
-    if(game.player==1 && game.yourTurn)$(".gameBannerUser1Info").children(".time").text(game.time);
-    else $(".gameBannerUser2Info").children(".time").text(game.time);
+    updateTimer();
   }, 1000);
   //$("td").loadBoard(); 
 });
+function updateTimer()
+{
+  var time = 0;
+  if((game.player==1 && game.yourTurn)||(game.player==2 && !game.yourTurn)) time = game.time;
+  $(".gameBannerUser1Info").children(".time").text(time);
+  if((game.player==1 && !game.yourTurn)||(game.player==2 && game.yourTurn)) time = game.time;
+  else time = 0;
+  $(".gameBannerUser2Info").children(".time").text(time);
+}
 $.fn.loadBoard = function()
 {
   return this.each(function() {

@@ -22,10 +22,9 @@ app.use(cookieParser());
 app.use("/play", function(req, res) {
   res.sendFile("public/game.html", {root: "./"});
 });
-
+var lastUser;
 app.use('/*', (req, res) => {
   //stats.peopleOnline++;
-  //res.clearCookie('user');
   if(!req.cookies.user)
   {
     res.cookie("user", 0);
@@ -38,7 +37,7 @@ app.use('/*', (req, res) => {
   console.log(req.cookies.user);
   //res.send(req.cookies);
   res.render('splash.ejs', { gamesNumber: stats.numberOfGames-1,
-     gamesCompleted: stats.closedGames, peopleOnline: stats.peopleOnline, timesLogin: req.cookies.user-0.5 });
+     gamesCompleted: stats.closedGames, peopleOnline: stats.peopleOnline, timesLogin: Math.ceil(req.cookies.user) });
 })
 
 /*app.use("/", function(req, res) {
@@ -132,16 +131,19 @@ wss.on("connection", function connection(ws) {
       outgoingMsg.data = new Object();
       outgoingMsg.data.player = 1;
       outgoingMsg.data.type = "Closed";
-      gameObj.player1.send(JSON.stringify(outgoingMsg));
+      if(gameObj.player1)gameObj.player1.send(JSON.stringify(outgoingMsg));
       if(gameObj.player2)gameObj.player2.send(JSON.stringify(outgoingMsg));
-      gameObj.player1.close();
-      gameObj.player1 = null;
-      if(gameObj.player2)gameObj.player2.close();
-      gameObj.player2 = null;
-      //stats.closedGames++;
+
       stats.peopleOnline--;
       if(gameObj.player2)stats.peopleOnline--;
       stats.numberOfGames--;
+
+      if(gameObj.player1)gameObj.player1.close();
+      gameObj.player1 = null;
+      if(gameObj.player2)gameObj.player2.close();
+      gameObj.player2 = null;
+     
+      if(currentGame.id==gameObj.id)currentGame = new Game(stats.numberOfGames++);
     }
   });
 });

@@ -2,10 +2,10 @@ var socket = new WebSocket("ws://localhost:3000");
 
 socket.onmessage = function(event){
   var incomingMsg = JSON.parse(event.data);
-  console.log(incomingMsg.type);
+  //console.log(incomingMsg.type);
   if(incomingMsg.type == Messages.UpdateLocal_s)
   {
-    console.log(incomingMsg.data);
+    //console.log(incomingMsg.data);
     game.board = incomingMsg.data.board;
     var player = incomingMsg.data.player;
     $("td").loadBoard(); 
@@ -27,24 +27,24 @@ socket.onmessage = function(event){
   {
     game.player = incomingMsg.data.player;
     game.gameID = incomingMsg.data.id;
-    if(game.player==1)alert("Waiting for other player to join...");
+    if(game.player==1)alert("You are white\nWaiting for other player to join...");
   }
   if(incomingMsg.type == Messages.GameStart_s)
   {
     game.gameStarted=true;
     if(game.player==1)alert("Player 2 joined and the game has started!");
-    else alert("Game has started!");
+    else alert("You are black\nGame has started!");
   }
   if(incomingMsg.type == Messages.Turn_s)
   {
     game.yourTurn=true;
-    $(".turn").text("It is your turn");
+    $(".turn").text("Your turn");
     game.time = 60;
     //alert("game has started");
   }
   if(incomingMsg.type == Messages.GameEnd_s)
   {
-    console.log(incomingMsg.data);
+    //console.log(incomingMsg.data);
     if(incomingMsg.data.type=="Closed")
     {
       alert("Other player has quit, game has ended");

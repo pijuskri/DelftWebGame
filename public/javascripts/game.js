@@ -6,13 +6,13 @@ var game = {
     player:null,
     board:null,
     selected:null,
-    gameStarted:true,
-    yourTurn:true,
+    gameStarted:false,
+    yourTurn:false,
     check: false,
     gameEnd:false,
     movesMade1:-1,
     movesMade2:0,
-    time1:3,
+    time1:0,
     movePiece : function (from, to)
     {
         this.board[to.row][to.col] = this.board[from.row][from.col];
@@ -58,9 +58,10 @@ var game = {
         if(this.selected)this.selected.html.css("background-color", this.selected.color);
         this.selected = null;
         sendMove();
-        //this.yourTurn = false;
-        $(".turn").text("It is your opponents turn");
-        this.time = 1;
+        this.time = 60;
+        updateTimer();
+        this.yourTurn = false;
+        $(".turn").text("Opponents turn");
     },
     getAt : function(adress)
     {
@@ -75,7 +76,7 @@ var game = {
         if(enemy && !king && you.player==enemy.player)return false;
         if(!king && enemy && enemy.name=="king")return false;
         if(king&&!enemy)enemy = {};
-        //if(this.check && you.name!="king") return false;
+        if(this.check && you.name!="king") return false;
         //if(enemy && enemy.name=="king")return false;
         var dx = to.col-from.col;
         var dy = to.row - from.row;
@@ -194,7 +195,7 @@ var game = {
             }
         }
         this.check = this.canBeAttacked(found)
-        if(this.check){console.log("king"+this.player+" is not safe"); }
+        if(this.check){alert("your king is checked!"); }
         var x = found.col;
         var y = found.row;
         
@@ -203,9 +204,9 @@ var game = {
         &&this.g(y-1,x)&&this.g(y,x-1)&&this.g(y-1,x-1)
         &&this.g(y+1,x-1)&&this.g(y-1,x+1)&&this.check;
 
-        console.log(this.g(y+1,x)+" "+this.g(y,x+1)+" "+this.g(y+1,x+1)
+        /*console.log(this.g(y+1,x)+" "+this.g(y,x+1)+" "+this.g(y+1,x+1)
         +" "+this.g(y-1,x)+" "+this.g(y,x-1)+" "+this.g(y-1,x-1)
-        +" "+this.g(y+1,x-1)+" "+this.g(y-1,x+1)+" "+this.check);
+        +" "+this.g(y+1,x-1)+" "+this.g(y-1,x+1)+" "+this.check);*/
         if(this.gameEnd)sendEnd();
     },
     g : function(y,x)
