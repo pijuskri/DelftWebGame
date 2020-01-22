@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use("/play", function(req, res) {
   res.sendFile("public/game.html", {root: "./"});
 });
-var lastUser;
+
 app.use('/*', (req, res) => {
   //stats.peopleOnline++;
   if(!req.cookies.user)
@@ -89,6 +89,7 @@ wss.on("connection", function connection(ws) {
       var incomingMsg = JSON.parse(message.toString());
       let gameObj = websockets[con.id];
       console.log(incomingMsg.type);
+      
       if(incomingMsg.type == messages.UpdateServer_s)
       {
         gameObj.board = incomingMsg.data.board;
